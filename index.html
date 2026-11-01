@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tarefas de HTML e CSS</title>
+<style>
+:root{--destaque:#171717;--cartao:#fff;--raio:14px;--b:#e6e6e6;--t:#111;--s:#6b6b6b}
+*{box-sizing:border-box}
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--t);background:#fff;line-height:1.6}
+.w{max-width:960px;margin:0 auto;padding:0 20px 40px}
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:#fff;padding:12px 0}
+.bar{display:flex;justify-content:space-between;align-items:center;border:1px solid var(--b);border-radius:var(--raio);padding:14px 22px;background:var(--cartao)}
+.bar span{color:var(--s)}
+section{padding:36px 0 8px}
+h2{margin:0;font-size:1.9rem;letter-spacing:-.02em;line-height:1.2}
+h3{margin:0}
+.sub{color:var(--s);margin:6px 0 20px}
+p{margin:0 0 14px;color:var(--s)}
+.card{border:1px solid var(--b);border-radius:var(--raio);background:var(--cartao);padding:22px}
+.btn{font:inherit;font-weight:600;padding:9px 18px;border-radius:10px;border:1px solid var(--b);background:#fff;color:var(--t);cursor:pointer}
+.btn.d{background:var(--destaque);border-color:var(--destaque);color:#fff}
+.btn:focus-visible,#topo:focus-visible,.gi:focus-visible{outline:3px solid #2563eb;outline-offset:2px}
+.ph{background:linear-gradient(135deg,#f5f5f5,#cfcfcf);border-radius:10px}
+#topo{position:fixed;right:20px;bottom:20px;width:48px;height:48px;border-radius:50%;border:0;background:var(--destaque);color:#fff;font-size:20px;cursor:pointer;opacity:0;pointer-events:none;transition:opacity .2s}
+#topo.on{opacity:1;pointer-events:auto}
+.perfil{max-width:420px;margin:auto;text-align:center;display:flex;flex-direction:column;align-items:center;gap:12px}
+.av{width:108px;height:108px;border-radius:50%}
+.perfil p{margin:0}
+.acoes{display:flex;gap:10px}
+.nums{display:flex;justify-content:space-between;width:100%;border-top:1px solid var(--b);padding-top:14px;margin-top:6px}
+.nums b{display:block;font-size:1.2rem;color:var(--t)}
+.nums span{color:var(--s);font-size:.85rem}
+.nav{display:flex;align-items:center;padding:14px 22px}
+.nav a{color:var(--s);text-decoration:none;font-weight:500}
+.links{display:flex;gap:28px;margin:0 auto;flex-wrap:wrap}
+.mos{display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:110px;gap:12px}
+.mos div{display:flex;align-items:center;justify-content:center;border-radius:var(--raio);background:linear-gradient(135deg,#f5f5f5,#cfcfcf)}
+.m1{grid-column:span 2;grid-row:span 2}.m3{grid-row:span 2}
+.art{max-width:640px}
+.art p:first-of-type::first-letter{float:left;font-size:3.6rem;line-height:.9;padding:4px 10px 0 0;font-weight:700;color:var(--s)}
+blockquote{margin:18px 0;padding:4px 0 4px 18px;border-left:3px solid var(--b);font-size:1.15rem}
+blockquote::before{content:"\201C";display:block;font-size:2.4rem;line-height:1;color:var(--s)}
+.res{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+::selection{background:#ffd54a;color:#111}
+.cat{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:18px}
+.prod{border:1px solid var(--b);border-radius:var(--raio);padding:16px;transition:transform .2s,box-shadow .2s}
+.prod:hover{transform:translateY(-4px);box-shadow:0 10px 24px rgba(0,0,0,.08)}
+.prod .ph{height:150px;margin-bottom:12px}
+.prod p{margin:0}
+.news{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+.nc{display:flex;flex-direction:column;border:1px solid var(--b);border-radius:var(--raio);padding:18px}
+.nc .ph{height:130px;margin-bottom:14px}
+.nc p{flex:1;margin:6px 0 12px}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.tags span{border:1px solid var(--b);border-radius:99px;padding:2px 12px;font-size:.85rem}
+.nc .btn{width:100%}
+.load{display:grid;gap:16px}
+.spin{width:36px;height:36px;margin-top:10px;border:4px solid #e5e5e5;border-top-color:var(--t);border-radius:50%;animation:g 1s linear infinite}
+@keyframes g{to{transform:rotate(360deg)}}
+.sk{margin-top:12px;border-radius:10px;background:linear-gradient(90deg,#f1f1f1 25%,#e4e4e4 50%,#f1f1f1 75%);background-size:200% 100%;animation:sh 1.4s infinite}
+@keyframes sh{to{background-position:-200% 0}}
+.dot{width:16px;height:16px;margin-top:12px;border-radius:50%;background:#e5001a;animation:p 1.5s infinite}
+@keyframes p{0%{box-shadow:0 0 0 0 rgba(229,0,26,.5)}100%{box-shadow:0 0 0 14px rgba(229,0,26,0)}}
+.blog{display:grid;grid-template-columns:2fr 1fr;gap:18px}
+.blog .tudo{grid-column:1/-1}
+.blog li{list-style:none;color:var(--s);padding:4px 0}
+.blog ul{margin:8px 0 0;padding:0}
+.blog .card{min-height:90px}
+.blog .art2{min-height:230px}
+@media(max-width:700px){.blog{grid-template-columns:1fr}}
+.gal{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px}
+.gi{position:relative;overflow:hidden;border-radius:var(--raio);height:190px}
+.gi .ph{position:absolute;inset:0;border-radius:0;transition:transform .5s}
+.gi:hover .ph,.gi:focus .ph{transform:scale(1.12)}
+.cap{position:absolute;left:0;right:0;bottom:0;padding:14px 16px;color:#fff;background:linear-gradient(transparent,rgba(0,0,0,.7));transform:translateY(100%);transition:transform .3s}
+.cap small{display:block;opacity:.85}
+.gi:hover .cap,.gi:focus .cap{transform:translateY(0)}
+.curso{max-width:420px;border:1px solid var(--b);border-radius:var(--raio);overflow:hidden}
+.capa{position:relative;height:220px;background:linear-gradient(135deg,#f5f5f5,#cfcfcf)}
+.capa::after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 40%,rgba(0,0,0,.65))}
+.capa h3{position:absolute;z-index:1;left:20px;bottom:16px;color:#fff;font-size:1.5rem}
+.selo{position:absolute;z-index:1;top:14px;left:14px;background:#fff;border-radius:99px;padding:2px 14px;font-weight:600;font-size:.9rem}
+.rod{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;color:var(--s)}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:16px;margin-bottom:16px}
+.kpis b{display:block;font-size:1.8rem;color:var(--destaque)}
+.kpis span{color:var(--s)}
+.deg{max-width:540px;margin:auto;padding:34px;border-radius:20px;border:1px solid var(--b);background:linear-gradient(135deg,#fff,#e9e9e9);box-shadow:0 2px 6px rgba(0,0,0,.06),0 18px 40px rgba(0,0,0,.1)}
+.deg h3{font-size:2.2rem;margin-bottom:12px;background:linear-gradient(90deg,#111,#666);-webkit-background-clip:text;background-clip:text;color:transparent}
+.deg .btn{width:100%;color:#fff;border:0;padding:14px;background:radial-gradient(circle at 50% 0,#555,#111 70%);box-shadow:0 6px 14px rgba(0,0,0,.25)}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<header class="top"><div class="w" style="padding-bottom:0"><div class="bar"><strong>Cabeçalho fixo</strong><span>Desce a página</span></div></div></header>
+<button id="topo" aria-label="Voltar ao topo">↑</button>
+<main class="w">
+
+<section>
+<h2>Cabeçalho fixo e botão de topo</h2>
+<p class="sub">O menu fica colado ao topo e o botão redondo fica sempre no canto.</p>
+<p>Este é um parágrafo de exemplo para a página ficar comprida. Desce para veres o cabeçalho colado ao topo e o botão no canto.</p>
+<p>Este é um parágrafo de exemplo para a página ficar comprida. Desce para veres o cabeçalho colado ao topo e o botão no canto.</p>
+</section>
+
+<section>
+<h2>Cartão de perfil</h2>
+<p class="sub">Avatar, texto, botões e números organizados com flexbox.</p>
+<div class="card perfil">
+<div class="av ph"></div>
+<h3>Marta Fernandes</h3>
+<p>Designer e professora de HTML e CSS.</p>
+<div class="acoes"><button class="btn d">Seguir</button><button class="btn">Mensagem</button></div>
+<div class="nums"><div><b>1,2 mil</b><span>Seguidores</span></div><div><b>340</b><span>A seguir</span></div><div><b>86</b><span>Publicações</span></div></div>
+</div>
+</section>
+
+<section>
+<h2>Barra de navegação</h2>
+<p class="sub">Logótipo à esquerda, links ao centro e botão à direita.</p>
+<nav class="card nav"><strong>Estúdio</strong><div class="links"><a href="#">Início</a><a href="#">Cursos</a><a href="#">Blog</a><a href="#">Contacto</a></div><button class="btn d">Entrar</button></nav>
+</section>
+
+<section>
+<h2>Galeria em mosaico</h2>
+<p class="sub">Itens de tamanhos diferentes encaixados numa grelha.</p>
+<div class="mos"><div class="m1">Foto 1</div><div>Foto 2</div><div class="m3">Foto 3</div><div>Foto 4</div><div>Foto 5</div></div>
+</section>
+
+<section>
+<h2>Artigo com tipografia cuidada</h2>
+<p class="sub">Letra capital, aspas decorativas, resumo cortado e seleção com cor própria.</p>
+<article class="art">
+<p>O bom design começa pelo texto. Uma letra capital e um espaçamento bem pensado mudam a forma como o leitor sente a página.</p>
+<blockquote>Escreve para quem lê, e não para quem escreve.</blockquote>
+<p class="res">Este resumo é bem mais longo do que cabe no espaço. O CSS corta o texto ao fim da terceira linha e acrescenta reticências sozinho, sem ser preciso contar palavras. Experimenta mudar o número de linhas e ver o que acontece com o texto que fica de fora.</p>
+<p>Seleciona este texto com o rato para veres a cor de seleção personalizada.</p>
+</article>
+</section>
+
+<section>
+<h2>Catálogo que se ajusta sozinho</h2>
+<p class="sub">Redimensiona a janela: os cartões reorganizam-se sem media queries.</p>
+<div class="cat">
+<div class="prod"><div class="ph"></div><h3>Caderno</h3><p>$3</p></div>
+<div class="prod"><div class="ph"></div><h3>Caneta</h3><p>$5</p></div>
+<div class="prod"><div class="ph"></div><h3>Mochila</h3><p>$7</p></div>
+<div class="prod"><div class="ph"></div><h3>Garrafa</h3><p>$9</p></div>
+</div>
+</section>
+
+<section>
+<h2>Cartões de notícias</h2>
+<p class="sub">Três cartões com a mesma altura e o botão sempre na base.</p>
+<div class="news">
+<div class="nc"><div class="ph"></div><h3>Novo curso de HTML</h3><p>Aprende a criar páginas do zero, com exercícios práticos em cada aula.</p><div class="tags"><span>HTML</span><span>Iniciante</span></div><button class="btn">Ler mais</button></div>
+<div class="nc"><div class="ph"></div><h3>Guia completo de flexbox e grid</h3><p>Um texto mais comprido, para veres que os cartões continuam com a mesma altura e o botão fica sempre na base, mesmo quando o conteúdo muda de tamanho.</p><div class="tags"><span>CSS</span><span>Layout</span><span>Guia</span><span>Avançado</span></div><button class="btn">Ler mais</button></div>
+<div class="nc"><div class="ph"></div><h3>Dicas de design</h3><p>Pequenos truques para páginas mais limpas.</p><div class="tags"><span>Design</span></div><button class="btn">Ler mais</button></div>
+</div>
+</section>
+
+<section>
+<h2>Animações de carregamento</h2>
+<p class="sub">Um spinner, um esqueleto com brilho e uma bolinha que pulsa.</p>
+<div class="load">
+<div class="card"><h3>Spinner</h3><div class="spin" role="status" aria-label="A carregar"></div></div>
+<div class="card"><h3>Esqueleto</h3><div class="sk" style="height:110px"></div><div class="sk" style="height:16px"></div><div class="sk" style="height:16px;width:60%"></div></div>
+<div class="card"><h3>Notificação</h3><div class="dot"></div></div>
+</div>
+</section>
+
+<section>
+<h2>Página de blog</h2>
+<p class="sub">Cabeçalho, artigo, barra lateral e rodapé. No telemóvel ficam numa coluna.</p>
+<div class="blog">
+<div class="card tudo"><h3>O meu blog</h3></div>
+<div class="card art2"><h3>Como aprendi CSS</h3><p>Texto do artigo. Redimensiona a janela para veres a barra lateral passar para baixo do artigo.</p></div>
+<aside class="card art2"><h3>Categorias</h3><ul><li>HTML</li><li>CSS</li><li>Dicas</li></ul></aside>
+<footer class="card tudo"><p style="margin:0">2026. Todos os direitos reservados.</p></footer>
+</div>
+</section>
+
+<section>
+<h2>Galeria com efeito</h2>
+<p class="sub">A foto aumenta devagar e a legenda sobe de baixo.</p>
+<div class="gal">
+<div class="gi" tabindex="0"><div class="ph"></div><div class="cap"><strong>Foto 1</strong><small>Passa o rato</small></div></div>
+<div class="gi" tabindex="0"><div class="ph"></div><div class="cap"><strong>Foto 2</strong><small>Passa o rato</small></div></div>
+<div class="gi" tabindex="0"><div class="ph"></div><div class="cap"><strong>Foto 3</strong><small>Passa o rato</small></div></div>
+</div>
+</section>
+
+<section>
+<h2>Cartão de curso</h2>
+<p class="sub">Selo no canto e título por cima da imagem.</p>
+<div class="curso"><div class="capa"><span class="selo">Novo</span><h3>HTML e CSS do zero</h3></div><div class="rod"><span>12 aulas</span><button class="btn d">Inscrever</button></div></div>
+</section>
+
+<section>
+<h2>Painel com tema por variáveis</h2>
+<p class="sub">Muda só os 3 valores do :root e o painel inteiro muda de aspeto.</p>
+<div class="kpis">
+<div class="card"><b>1 240</b><span>Visitas</span></div>
+<div class="card"><b>86</b><span>Vendas</span></div>
+<div class="card"><b>4,8</b><span>Avaliação</span></div>
+</div>
+<div class="card"><h3>Relatório do mês</h3><p style="margin:8px 0 14px">Tudo aqui depende das três variáveis.</p><button class="btn d">Ver detalhes</button> <button class="btn" id="tema">Trocar cor</button></div>
+</section>
+
+<section>
+<h2>Cartão com degradês</h2>
+<p class="sub">Fundo, texto e botão com degradês, e sombras em duas camadas.</p>
+<div class="deg"><h3>Cria sem limites</h3><p>Degradês bem usados dão profundidade sem precisar de imagens.</p><button class="btn">Começar agora</button></div>
+</section>
+
+</main>
+<script>
+var topo=document.getElementById('topo');
+window.addEventListener('scroll',function(){topo.classList.toggle('on',window.scrollY>300)});
+topo.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'})});
+var vermelho=false;
+document.getElementById('tema').addEventListener('click',function(){
+vermelho=!vermelho;
+document.documentElement.style.setProperty('--destaque',vermelho?'#b02a2a':'#171717');
+});
+</script>
+</body>
+</html>
